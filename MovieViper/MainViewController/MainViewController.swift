@@ -25,6 +25,14 @@ class MainViewController: UIViewController {
         configurator.config(viewController: self)
         presenter.viewDidLoad()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "det"{
+            let detailVC = segue.destination as! DetailViewController
+            guard let movie = sender as? Film else {return}
+            detailVC.movies = movie
+        }
+    }
 
 
 }
@@ -33,9 +41,15 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let movie = presenter.movie(indexPath: indexPath) else {return}
+        performSegue(withIdentifier: "det", sender: movie)
         
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        100
+    }
     
 }
 
