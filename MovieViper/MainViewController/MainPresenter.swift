@@ -13,6 +13,7 @@ protocol MainPresenterProtocol: AnyObject{
     var movies: [Film] {get}
     var moviesCount: Int? {get}
     func movie (indexPath: IndexPath)-> Film?
+    func showMovieDetails(indexPath: IndexPath)
 }
 
 class MainPresenter{
@@ -52,6 +53,13 @@ extension MainPresenter: MainPresenterProtocol{
             return movies[indexPath.row]
         }else{
             return nil
+        }
+    }
+    
+    func showMovieDetails(indexPath: IndexPath) {
+        if movies.indices.contains(indexPath.row){
+            let movie = movies[indexPath.row]
+            router.openDetailVC(movie: movie)
         }
     }
 }

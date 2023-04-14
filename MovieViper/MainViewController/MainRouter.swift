@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MainRouterProtocol: AnyObject{
-    
+    func openDetailVC(movie: Film)
 }
 
 class MainRouter{
@@ -23,5 +23,7 @@ class MainRouter{
 
 
 extension MainRouter: MainRouterProtocol{
-    
+    func openDetailVC(movie: Film) {
+        view?.performSegue(withIdentifier: "det", sender: movie)
+    }
 }

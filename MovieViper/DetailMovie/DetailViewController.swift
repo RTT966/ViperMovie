@@ -26,13 +26,11 @@ class DetailViewController: UIViewController{
     
     
     
-    var movies: Film!
+     
     var presenter: DetailPresenterProtocol!
-    private let configurator: DetailConfigProtocol = DetailConfig()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configurator.configure(view: self, movies: movies)
         presenter.showDetail()
     }
     
