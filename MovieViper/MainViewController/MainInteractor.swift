@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MainInteractorProtocol: AnyObject{
-    func fetchCourses()
+    func fetchMovies()
 }
 
 
@@ -27,7 +27,7 @@ class MainInteractor{
 
 
 extension MainInteractor: MainInteractorProtocol{
-    func fetchCourses() {
+    func fetchMovies() {
         MovieApi.shared.getMovie { [weak self] movie in
             self?.presenter.movieDidRecieve(movies: movie)
         }

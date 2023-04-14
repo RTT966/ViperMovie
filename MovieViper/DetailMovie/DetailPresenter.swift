@@ -54,8 +54,11 @@ extension DetailPresenter: DetailInteractorOutputProtocol{
         view.setMovieYear(tittle: movie.year)
         view.setMovieRating(tittle: movie.rating)
         view.setImageForFavoriteButton()
-        guard let imageData = ImageManager.shared.getImageData(from: movie.posterURL) else {return}
-        view.setMovieImage(data: imageData)
+        ImageManager.shared.getImageData(from: movie.posterURL) { imageData in
+            guard let imageData else {return}
+            self.view.setMovieImage(data: imageData)
+        }
+        
     }
     
     

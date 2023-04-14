@@ -44,7 +44,7 @@ extension MainPresenter: MainInteractorOutputProtocol{
 
 extension MainPresenter: MainPresenterProtocol{
     func viewDidLoad() {
-        interactor.fetchCourses()
+        interactor.fetchMovies()
     }
     
     func movie(indexPath: IndexPath) -> Film? {

@@ -11,8 +11,17 @@ class TableViewCell: UITableViewCell {
 
     func configure(film: Film){
         textLabel?.text = film.nameRu
-        guard let imageData = ImageManager.shared.getImageData(from: film.posterURL) else {return}
-        imageView?.image = UIImage(data: imageData )
+        DispatchQueue.global().async {
+            ImageManager.shared.getImageData(from: film.posterURL) { imageData in
+                guard let imageData else {return}
+                DispatchQueue.main.async {
+                    self.imageView?.image = UIImage(data: imageData )
+
+                }
+
+            }
+        }
+      
     }
 
 }

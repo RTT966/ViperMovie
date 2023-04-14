@@ -54,7 +54,10 @@ extension DetailViewController: DetailVCProtocol{
     }
     
     func setMovieImage(data: Data) {
-        movieImage.image = UIImage(data: data)
+        DispatchQueue.main.async {
+            self.movieImage.image = UIImage(data: data)
+
+        }
     }
     
     func setMovieName(tittle: String) {

@@ -15,7 +15,7 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var movies: [Film]?
+   // var movies: [Film]?
     
     var presenter: MainPresenter!
     private let configurator: MainConfigProtocol = MainConfig()
@@ -41,7 +41,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        self.tableView.deselectRow(at: indexPath, animated: true)
         guard let movie = presenter.movie(indexPath: indexPath) else {return}
         performSegue(withIdentifier: "det", sender: movie)
         
